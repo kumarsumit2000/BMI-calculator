@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <style>
+        body{
+            background: black;
+            color: rgb(213, 212, 212);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container{
+            width: 400px;
+            height: 500px;
+            margin: auto;
+            margin-top: 50px;
+            background: #212121;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgb(56, 56, 56);
+        }
+        form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        label{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 10px 0px;
+        }
+        input{
+            padding: 5px 10px;
+           
+        }
+        button{
+            padding: 5px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        #time{
+            position: absolute;
+            bottom: 50px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form>
+            <label><span>Height in CM<span style="color: red;">*</span>:</span><input type="text" id="height" placeholder="1000"></label>
+            <label><span>Weight in KG<span style="color: red;">*</span>:</span> <input type="text" id="weight" placeholder="50"></label>
+            <label><button type="submit">Calculate</button></label>
+            <h3 id="result"></h3>
+        </form>
+        <div id="time"></div>
+    </div>
+</body>
+<script>
+    let form = document.querySelector("form");
+
+    form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let height = parseInt(document.querySelector("#height").value);
+    let weight = parseInt(document.querySelector("#weight").value);
+    let result = document.querySelector("#result");
+
+    // input checks
+if(height == "" || height < 0 || isNaN(height)){
+    result.textContent = `Please give a valid height ${height}`;
+    result.style.color = "red";
+}else if(weight == "" || weight < 0 || isNaN(weight)){
+    result.textContent = `Please give a valid weight ${weight}`;
+    result.style.color = "red";
+}else{
+     const bmi = (weight/((height * height)/10000)).toFixed(2);
+    //  show the result
+     result.textContent = `Your BMI Weight is: ${bmi}`;
+     result.style.color = "green";
+}
+
+    })
+setInterval(()=>{
+let time = document.querySelector("#time");
+const mytime = new Date();
+time.textContent = mytime.toLocaleTimeString();
+},1000)
+
+let p = 8;
+console.log(p);
+p = 99;
+console.log(p)
+</script>
+</html>
